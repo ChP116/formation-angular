@@ -62,8 +62,8 @@
         </div>
         <div>
             <label for="matiere" class="col-md-2 col-form-label">Matières :</label>
-            <span [disabled]="badge(formateurForm.Id,matiere)" class="badge badge-pill badge-primary"
-                *ngFor="let matiere of listMatiere()">{{matiere.Titre}}</span>
+            <button [disabled]="badge(formateurForm.Id,matiere)"  class="badge badge-pill badge-primary"
+                *ngFor="let matiere of listMatiere()">{{matiere.Titre}}</button>
         </div>
     </div>
     <div class="card-footer">

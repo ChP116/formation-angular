@@ -42,12 +42,13 @@ export class CursusComponent implements OnInit {
   }
 
   save(): void {
-    console.log(this.cursusForm);
-    // if (this.cursusForm.Id) {
-    //   this.cursusService.update(this.cursusForm);
-    // } else {
-    //   this.cursusService.create(this.cursusForm);
-    // }
+    // console.log(this.cursusForm);
+    if (this.cursusForm.Id) {
+      this.cursusService.update(this.cursusForm);
+    } else {
+      this.cursusService.create(this.cursusForm);
+    }
+    this.cancel();
   }
 
   cancel(): void {

@@ -7,7 +7,7 @@ import { Competence } from './model';
 })
 export class CompetencesService {
 
-  private competences: Array<Competence> = new Array<Competence>();
+  competences: Array<Competence> = new Array<Competence>();
 
 
   constructor(private matieresService: MatiereService) {
@@ -30,7 +30,7 @@ export class CompetencesService {
         competenceTemp.push(element);
       }
     });
-    console.log(competenceTemp);
+    // console.log(competenceTemp);
     return competenceTemp;
   }
 

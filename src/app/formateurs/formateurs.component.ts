@@ -16,14 +16,33 @@ export class FormateursComponent implements OnInit {
 
   }
 
+
   @Input() formateurForm: Formateur = null;
+
+  selection : number[]=[];
+  bool : boolean;
 
   ngOnInit(): void {
   }
 
   badge(formateurId: number, matiere: Matiere): boolean {
+    // console.log(formateurId+" "+matiere.Id);
+    if (!this.competencesService.competences.find(m => m.Matiere == matiere && m.FormateurId == formateurId)) {
+      // console.log(this.competencesService.competences.find(m => m.Matiere == matiere && m.FormateurId == formateurId))    
+      
+      return false;
+    }
+    else {
+    this.ajoutSelection(matiere.Id)
+ 
 
-    if (this.competencesService.findAll(formateurId).includes(matiere)) return true else return false
+    return true;
+    }
+  }
+
+  ajoutSelection(id:number){
+this.selection.push(id);
+// console.log(this.selection)
 
   }
 
@@ -57,6 +76,7 @@ export class FormateursComponent implements OnInit {
     } else {
       this.formateursService.create(this.formateurForm);
     }
+    this.cancel();
   }
 
   cancel(): void {
