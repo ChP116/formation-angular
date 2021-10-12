@@ -1,1 +1,63 @@
-<p>cursus works!</p>
+<div class="card my-3">
+    <div class="card-header bg-info text-white"><h2>Liste des filières</h2></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped" id="tableFiliere">
+                <thead>
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Intitulé</th>
+                        <th>Date de début</th>
+                        <th>Durée</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" id="buttonPlus" class="btn btn-success btn-lg">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+</div>
+
+<div class="card mb-3" id="filiereForm" style="display:none">
+    <div class="card-header bg-info text-white">
+        <h3>
+            Edition de la filière
+        </h3>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-group row">
+                <label for="id" class="col-md-2 col-form-label">Identifiant:</label>
+                <input type="number" class="col-md-10 form-control" id="id" readonly>
+            </div>
+            <div class="form-group row">
+                <label for="intitule" class="col-md-2 col-form-label">Intitulé:</label>
+                <input type="text" class="col-md-10 form-control" id="intitule">
+            </div>
+            <div class="form-group row">
+                <label for="dtDebut" class="col-md-2 col-form-label">Date de début:</label>
+                <input type="date" class="col-md-10 form-control" id="dtDebut">
+            </div>
+            <div class="form-group row">
+                <label for="duree" class="col-md-2 col-form-label">Durée:</label>
+                <input type="number" class="col-md-10 form-control" id="duree">
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <button type="button" id="buttonSave" class="btn btn-success">
+                <i class="fa fa-check"></i>
+            </button>
+            <button type="button" id="buttonReload" class="btn btn-warning" >
+                <i class="fa fa-undo"></i>
+            </button>
+        </div>
+    </div>
+</div>

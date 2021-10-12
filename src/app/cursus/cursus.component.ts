@@ -11,7 +11,7 @@ export class CursusComponent implements OnInit {
 
   public cursus: Cursus;
 
-  constructor(private cursusService: CursusService) { }
+  constructor(private cursusService: CursusService,) { }
 
   ngOnInit(): void {
   }
