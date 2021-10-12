@@ -1,0 +1,43 @@
+<div class="card my-3">
+    <div class="card-header bg-info text-white">
+        <h2>Liste des matières</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped" id="tableFiliere">
+                <thead>
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Titre</th>
+                        <th>Durée</th>
+                        <th>Objectifs</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let matiere of list()">
+                        <td>{{matiere.Id}}</td>
+                        <td>{{matiere.Titre}}</td>
+                        <td>{{matiere.Duree}}</td>
+                        <td>{{matiere.PreRequis}}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm"><button type="button" class="btn btn-primary"
+                                    (click)="edit(matiere.Id)"><i class="fa fa-edit"></i></button><button type="button"
+                                    class="btn btn-danger" (click)="remove(matiere.Id)"><i
+                                        class="fa fa-trash"></i></button></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-success btn-lg" (click)="add()">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+</div>
+
+<div *ngIf="matiereForm">
+    <matiere-form [matiereForm]="matiereForm"></matiere-form>
+</div>

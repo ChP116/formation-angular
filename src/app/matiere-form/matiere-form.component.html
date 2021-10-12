@@ -1,0 +1,43 @@
+<div class="card" id="matiereForm" *ngIf="matiereForm">
+    <div class="card-header bg-info text-white">
+        <h3>
+            Edition de la matière
+        </h3>
+    </div>
+    <div class="card-body">
+        <div class="form-group row">
+            <label for="Id" class="col-md-2 col-form-label">Identifiant:</label>
+            <input type="number" class="col-md-10 form-control" id="Id" readonly [(ngModel)]="matiereForm.Id">
+        </div>
+        <div class="form-group row">
+            <label for="Titre" class="col-md-2 col-form-label">Titre :</label>
+            <input type="text" class="col-md-10 form-control" id="Titre" [(ngModel)]="matiereForm.Titre">
+        </div>
+        <div class="form-group row">
+            <label for="Duree" class="col-md-2 col-form-label">Durée :</label>
+            <input type="number" class="col-md-10 form-control" id="Duree" [(ngModel)]="matiereForm.Duree">
+        </div>
+        <div class="form-group row">
+            <label for="Objectifs" class="col-md-2 col-form-label">Objectifs :</label>
+            <input type="text" class="col-md-10 form-control" id="Objectifs" [(ngModel)]="matiereForm.Objectifs">
+        </div>
+        <div class="form-group row">
+            <label for="PreRequis" class="col-md-2 col-form-label">Pré-requis :</label>
+            <input type="text" class="col-md-10 form-control" id="PreRequis" [(ngModel)]="matiereForm.PreRequis">
+        </div>
+        <div class="form-group row">
+            <label for="Programme" class="col-md-2 col-form-label">Programme :</label>
+            <input type="text" class="col-md-10 form-control" id="Programme" [(ngModel)]="matiereForm.Programme">
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <button type="button" class="btn btn-success" (click)="save()">
+                <i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-warning" (click)="cancel()">
+                <i class="fa fa-undo"></i>
+            </button>
+        </div>
+    </div>
+</div>
