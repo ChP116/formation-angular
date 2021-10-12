@@ -106,12 +106,12 @@ export class Cursus {
     public GestionnaireId: number;
     public Utilisateur: Utilisateur;
     public Intitule: string;
-    public DateDebut: Date;
-    public DateFin: Date;
-    public Stagiaires: Array<Stagiaire>;
+    public DateDebut: string;
+    public DateFin: string;
+    public Stagiaires: Array<Stagiaire> = new Array<Stagiaire>();
     //public Modules: Array<Module>;
 
-    constructor(id?: number, intitule?: string, dateDebut?: Date, dateFin?: Date) {
+    constructor(id?: number, intitule?: string, dateDebut?: string, dateFin?: string) {
         this.Id = id;
         this.Intitule = intitule;
         this.DateDebut = dateDebut;
