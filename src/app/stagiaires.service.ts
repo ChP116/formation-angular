@@ -49,4 +49,7 @@ export class StagiairesService {
     this.stagiaires.splice(position, 1);
   }
 
+  // findStagiairesCursus(id:number) : Array<Stagiaire> {
+
+  // }
 }
