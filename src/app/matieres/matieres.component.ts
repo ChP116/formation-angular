@@ -3,7 +3,7 @@ import { Matiere } from '../model';
 import { MatiereService } from './matiere.service';
 
 @Component({
-  selector: 'app-matieres',
+  selector: 'matieres',
   templateUrl: './matieres.component.html',
   styleUrls: ['./matieres.component.scss']
 })

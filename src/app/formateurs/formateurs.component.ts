@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-formateurs',
+  selector: 'formateurs',
   templateUrl: './formateurs.component.html',
   styleUrls: ['./formateurs.component.scss']
 })

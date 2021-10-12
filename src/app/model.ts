@@ -42,7 +42,7 @@ export class Stagiaire extends Personne {
     public DateNaissance: Date;
     public CursusId: number;
     public Cursus: Cursus;
-    public Evaluations: Array<Evaluation>;
+    //public Evaluations: Array<Evaluation>;
 
     constructor(id?: number, civilite?: string, nom?: string, prenom?: string, email?: string, telephone?: string, dateNaissance?: Date) {
         super(id, civilite, nom, prenom, email, telephone)
@@ -67,7 +67,7 @@ export class Utilisateur extends Personne {
 export class Formateur {
     public Id: number;
     public Externe: boolean;
-    public Modules: Array<Module>;
+    //public Modules: Array<Module>;
     public Competences: Array<Competence>;
     public UtilisateurId: number;
     public Utilisateur: Utilisateur;
@@ -109,7 +109,7 @@ export class Cursus {
     public DateDebut: Date;
     public DateFin: Date;
     public Stagiaires: Array<Stagiaire>;
-    public Modules: Array<Module>;
+    //public Modules: Array<Module>;
 
     constructor(id?: number, intitule?: string, dateDebut?: Date, dateFin?: Date) {
         this.Id = id;

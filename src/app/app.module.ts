@@ -10,6 +10,10 @@ import { MatiereFormComponent } from './matiere-form/matiere-form.component';
 import { StagiairesComponent } from './stagiaires/stagiaires.component';
 import { CursusComponent } from './cursus/cursus.component';
 import { FormateursComponent } from './formateurs/formateurs.component';
+import { FormateursService } from './formateurs.service';
+import { CompetencesService } from './competences.service';
+import { CursusService } from './cursus.service';
+import { StagiairesService } from './stagiaires.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,7 @@ import { FormateursComponent } from './formateurs/formateurs.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [MatiereService],
+  providers: [MatiereService, FormateursService, CompetencesService, CursusService, StagiairesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
