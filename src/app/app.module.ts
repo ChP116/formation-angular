@@ -7,12 +7,18 @@ import { MatieresComponent } from './matieres/matieres.component';
 import { MatiereService } from './matieres/matiere.service';
 import { FormsModule } from '@angular/forms';
 import { MatiereFormComponent } from './matiere-form/matiere-form.component';
+import { StagiairesComponent } from './stagiaires/stagiaires.component';
+import { CursusComponent } from './cursus/cursus.component';
+import { FormateursComponent } from './formateurs/formateurs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MatieresComponent,
-    MatiereFormComponent
+    MatiereFormComponent,
+    StagiairesComponent,
+    CursusComponent,
+    FormateursComponent
   ],
   imports: [
     BrowserModule,
