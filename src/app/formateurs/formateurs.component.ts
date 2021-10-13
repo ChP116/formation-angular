@@ -72,9 +72,8 @@ export class FormateursComponent implements OnInit {
 
   save(): void {
     if (this.formateurForm.Id) {
-
       this.formateursService.update(this.formateurForm);
-      //this.competencesService.deleteByF(this.formateurForm.Id);
+      this.competencesService.deleteByF(this.formateurForm.Id);
       this.selection.forEach(element => {
 
         this.competencesService.create(element);
@@ -89,7 +88,7 @@ export class FormateursComponent implements OnInit {
   test(formateurId: number, event: any) {
     this.selection = [];
     for (let option of event.target.selectedOptions) {
-      let competence: Competence = new Competence(null, formateurId, option.value);
+      let competence: Competence = new Competence(null, formateurId, parseInt(option.value));
       competence.Matiere = this.matieresService.find(option.value);
       this.selection.push(competence);
     }

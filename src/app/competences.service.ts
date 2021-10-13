@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormateursService } from './formateurs.service';
 import { MatiereService } from './matieres/matiere.service';
 import { Competence } from './model';
 
@@ -10,7 +11,7 @@ export class CompetencesService {
   competences: Array<Competence> = new Array<Competence>();
 
 
-  constructor(private matieresService: MatiereService) {
+  constructor(private matieresService: MatiereService, private formateursService: FormateursService) {
 
     let competence1: Competence = new Competence(1, 1, 1);
     competence1.Matiere = (matieresService.find(1));
@@ -21,6 +22,7 @@ export class CompetencesService {
     let competence3: Competence = new Competence(3, 2, 6);
     competence3.Matiere = (matieresService.find(6));
     this.competences.push(competence3);
+    
   }
 
   findAll(id: number): Array<Competence> {
@@ -33,6 +35,13 @@ export class CompetencesService {
     // console.log(competenceTemp);
     return competenceTemp;
   }
+
+  deleteByF(id: number): void {   
+    this.competences.filter(m=> m.FormateurId==id).forEach(element => {                 
+        this.competences.splice(this.competences.indexOf(element), 1);        
+      })
+  };
+
 
   find(id: number): Competence {
     return this.competences.find(m => m.Id == id);
@@ -64,9 +73,5 @@ export class CompetencesService {
   }
 
 
-  // deleteByF(id: number): void {
-  //   let competenceTemp: Array<Competence> = new Array<Competence>();
-  //   competenceTemp.push(this.competences.find(m => m.FormateurId == id);
-  //   competenceTemp = [];
-  // };
+
 }
