@@ -58,8 +58,9 @@
         </div>
         <div class="form-group row">
             <label for="Externe" class="col-md-2 col-form-label">Externe :</label>
-            <input type="checkbox" class="col-md-1 mt-3" id="Externe" [(ngModel)]="formateurForm.Externe">
-            <div class="col-md-8"></div>
+            <div class=" col-md-10">
+                <input type="checkbox" class="col-md-1 ml-0 mt-3" id="Externe" [(ngModel)]="formateurForm.Externe">
+            </div>
         </div>
         <!--<div>
             <label for="matiere" class="col-md-2 col-form-label">Matières :</label>
@@ -77,16 +78,16 @@
 
         </div>
 
-         <!-- version checkbox  -->
+        <!-- version checkbox  -->
         <div class="form-group row">
             <label for="matiere" class="col-md-2 col-form-label">Liste des matieres :</label>
             <div class=" col-md-10">
-            <div  *ngFor="let mat of listMatiere()">
-                <input class="col-md-1 ml-0 mt-2 pr-5" (change)="checkboxChange(formateurForm.Id, $event)" type="checkbox"
-                    [checked]="select(formateurForm.Id, mat)" [value]="mat.Id" [id]="mat.Titre" />
-                <label [for]="mat.Titre" class="col-md-2 col-form-label">{{mat.Titre}}</label>
+                <div *ngFor="let mat of listMatiere()">
+                    <input class="col-md-1 ml-0 mt-2 pr-5" (change)="checkboxChange(formateurForm.Id, $event)"
+                        type="checkbox" [checked]="select(formateurForm.Id, mat)" [value]="mat.Id" [id]="mat.Titre" />
+                    <label [for]="mat.Titre" class="col-md-11 col-form-label">{{mat.Titre}}</label>
+                </div>
             </div>
-        </div>
         </div>
         <!-- fin version checkbox -->
     </div>
