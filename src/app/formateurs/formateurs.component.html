@@ -69,16 +69,36 @@
         <div class="form-group row">
             <label for="matiere" class="col-md-2 col-form-label">Liste des matieres :</label>
             <select type="text" class="col-md-10 form-control" id="matiere" multiple
-                (change)="test(formateurForm.Id, $event)">
-                <option *ngFor="let mat of listMatiere()" [value]="mat.Id">{{mat.Titre}}</option>
+                (change)="selectChange(formateurForm.Id, $event)">
+                <option *ngFor="let mat of listMatiere()" [selected]="select(formateurForm.Id, mat)" [value]="mat.Id">
+                    {{mat.Titre}}</option>
             </select>
+
         </div>
+
+         <!-- version checkbox  -->
+        <div class="form-group row">
+            <label for="matiere" class="col-md-2 col-form-label">Liste des matieres :</label>
+            <div class=" col-md-10">
+            <div  *ngFor="let mat of listMatiere()">
+                <input class="col-md-1 ml-0 mt-2 pr-5" (change)="checkboxChange(formateurForm.Id, $event)" type="checkbox"
+                    [checked]="select(formateurForm.Id, mat)" [value]="mat.Id" id="matiere" />
+                <label for="matiere" class="col-md-2 col-form-label">{{mat.Titre}}</label>
+            </div>
+        </div>
+        </div>
+        <!-- fin version checkbox -->
     </div>
     <div class="card-footer">
         <div class="btn-group btn-group-lg float-right">
             <button type="button" class="btn btn-success" (click)="save()">
                 <i class="fa fa-check"></i>
             </button>
+            <!-- bouton save checkbox -->
+            <button type="button" class="btn btn-primary" (click)="saveC()">
+                <i class="fa fa-check"></i>
+            </button>
+            <!-- fin bouton save checkbox -->
             <button type="button" class="btn btn-warning" (click)="cancel()">
                 <i class="fa fa-undo"></i>
             </button>
