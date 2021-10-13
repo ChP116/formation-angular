@@ -23,8 +23,9 @@ export class FormateursComponent implements OnInit {
   selection: Array<Competence>;
   selectionC: Array<Competence> = [];
   selectionC_D: Array<Competence> = [];
-  status: boolean[] =[];
-  
+  status: boolean[] = [];
+  check: boolean;
+
 
   ngOnInit(): void {
   }
@@ -83,7 +84,7 @@ export class FormateursComponent implements OnInit {
     // nécessaires pour la version checkbox
     this.selectionC = [];
     this.selectionC_D = [];
-    this.status = [];
+    // this.status = [];
 
   }
   // fin méthodes communes
@@ -137,7 +138,7 @@ export class FormateursComponent implements OnInit {
 
 
 
-  // Version checkbox
+  // Version checkbox : bug si check/uncheck intempestifs, ok en utilisation normale
   saveC(): void {
     // this.status.splice(0, 1)
     // console.log(this.status)
@@ -167,27 +168,55 @@ export class FormateursComponent implements OnInit {
       //       })
       //     })
 
-      console.log("pop")
-      console.log(this.status.pop())
+      // console.log("pop")
+      // console.log(this.status.pop())
 
       if (this.selectionC.length != 0) {
         this.selectionC.forEach(element => {
-          this.competencesService.create(element);
-        });
-      }
-      if (this.selectionC_D.length != 0 ) {
-        // console.log(this.selectionC_D)
-        // console.log(this.statusBool)
-        this.selectionC_D.forEach(element => {
-          console.log(element)
-          if (this.competencesService.competences.find(m => m.Matiere == element.Matiere && m.FormateurId == element.FormateurId)) {
-            element.Id = this.competencesService.competences.find(m => m.Matiere == element.Matiere && m.FormateurId == element.FormateurId).Id
-            this.competencesService.delete(element.Id);
+          if (this.selectionC_D.length != 0) {
+            this.selectionC_D.forEach(element_D => {
+              if (element.Matiere == element_D.Matiere && element.MatiereId == element_D.MatiereId && element.FormateurId == element_D.FormateurId) {
+                this.check = false
+              }
+              else {
+                this.check = true
+              }
+            })
+
+            if (this.check) {
+              this.competencesService.create(element);
+            }
           }
           else {
-            console.log("else")
+            this.competencesService.create(element);
           }
 
+        });
+      }
+      if (this.selectionC_D.length != 0) {
+        // console.log(this.selectionC_D)
+        // console.log(this.statusBool)
+        this.selectionC_D.forEach(element_D => {
+          if (this.selectionC.length != 0) {
+            this.selectionC.forEach(element => {
+              if (element.Matiere == element_D.Matiere && element.MatiereId == element_D.MatiereId && element.FormateurId == element_D.FormateurId) {
+                this.check = false
+              }
+              else {
+                this.check = true
+              }
+            })
+            
+            if (this.check) {
+              if (this.competencesService.competences.find(m => m.Matiere == element_D.Matiere && m.FormateurId == element_D.FormateurId)) {
+                element_D.Id = this.competencesService.competences.find(m => m.Matiere == element_D.Matiere && m.FormateurId == element_D.FormateurId).Id
+                this.competencesService.delete(element_D.Id);
+              }              
+            }
+          }
+          else {
+            this.competencesService.delete(element_D.Id);
+          }
         });
       }
     }
@@ -229,7 +258,7 @@ export class FormateursComponent implements OnInit {
       }
       if (boolC) {
         this.selectionC.push(competence);
-        this.status.push(event.currentTarget.checked);
+        // this.status.push(event.currentTarget.checked);
       }
     }
     else {
@@ -254,7 +283,7 @@ export class FormateursComponent implements OnInit {
 
       if (boolC_D) {
         this.selectionC_D.push(competence);
-        this.status.push(event.currentTarget.checked)
+        // this.status.push(event.currentTarget.checked)
       }
 
     }
