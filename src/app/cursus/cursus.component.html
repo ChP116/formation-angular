@@ -21,7 +21,7 @@
                         <td>{{cursus.Intitule}}</td>
                         <td>{{cursus.DateDebut | date: "dd/MM/yyyy"}}</td>
                         <td>{{cursus.DateFin | date: "dd/MM/yyyy"}}</td>
-                        <td ><p *ngFor="let sta of cursus.Stagiaires">{{sta.Prenom}} - {{sta.Nom}}</p></td>
+                        <td ><ul style="list-style:none;padding-left: 0; max-height :75px; overflow: auto"><li  *ngFor="let sta of cursus.Stagiaires">{{sta.Prenom}} {{sta.Nom}}</li></ul></td>
                         <td>
                             <div class="btn-group btn-group-sm"><button type="button" class="btn btn-primary"
                                     (click)="edit(cursus.Id)"><i class="fa fa-edit"></i></button><button type="button"

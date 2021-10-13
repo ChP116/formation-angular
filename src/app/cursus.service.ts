@@ -14,7 +14,17 @@ export class CursusService {
     this.cursusList.push(new Cursus(2, "Java", "10/06/2020", "10/9/2021"));
     let cursus : Cursus = new Cursus(3, "Java", "10/06/2020", "10/9/2021");
     cursus.Stagiaires.push(stagiaireService.find(1));
-    cursus.Stagiaires.push(stagiaireService.find(4));
+    cursus.Stagiaires.push(stagiaireService.find(2));
+    cursus.Stagiaires.push(stagiaireService.find(1));
+    cursus.Stagiaires.push(stagiaireService.find(2));
+    cursus.Stagiaires.push(stagiaireService.find(1));
+    cursus.Stagiaires.push(stagiaireService.find(2));
+    cursus.Stagiaires.push(stagiaireService.find(1));
+    cursus.Stagiaires.push(stagiaireService.find(2));
+    cursus.Stagiaires.push(stagiaireService.find(1));
+    cursus.Stagiaires.push(stagiaireService.find(2));
+    cursus.Stagiaires.push(stagiaireService.find(1));
+   
     this.cursusList.push(cursus);
   }
 
