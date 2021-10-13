@@ -60,10 +60,18 @@
             <label for="Externe" class="col-md-2 col-form-label">Externe :</label>
             <input type="checkbox" class="col-md-10 form-control" id="Externe" [(ngModel)]="formateurForm.Externe">
         </div>
-        <div>
+        <!--<div>
             <label for="matiere" class="col-md-2 col-form-label">Matières :</label>
-            <button [disabled]="badge(formateurForm.Id,matiere)"  class="badge badge-pill badge-primary"
-                *ngFor="let matiere of listMatiere()">{{matiere.Titre}}</button>
+            <button [disabled]="badge(formateurForm.Id,matiere)" class="badge badge-pill badge-primary"
+                *ngFor="let matiere of listMatiere()"
+                (click)="ajoutSelection(formateurForm.Id,matiere)">{{matiere.Titre}}</button>
+        </div>-->
+        <div class="form-group row">
+            <label for="matiere" class="col-md-2 col-form-label">Liste des matieres :</label>
+            <select type="text" class="col-md-10 form-control" id="matiere" multiple
+                (change)="test(formateurForm.Id, $event)">
+                <option *ngFor="let mat of listMatiere()" [value]="mat.Id">{{mat.Titre}}</option>
+            </select>
         </div>
     </div>
     <div class="card-footer">

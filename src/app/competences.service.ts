@@ -40,14 +40,14 @@ export class CompetencesService {
 
   create(competence: Competence): void {
     let max: number = 0;
-
     for (let mat of this.competences) {
       if (max < mat.Id) {
         max = mat.Id;
       }
     }
 
-    competence
+    competence.Id = ++max;
+    competence.Matiere = (this.matieresService.find(competence.MatiereId));
     this.competences.push(competence);
   }
 
@@ -62,4 +62,11 @@ export class CompetencesService {
 
     this.competences.splice(position, 1);
   }
+
+
+  // deleteByF(id: number): void {
+  //   let competenceTemp: Array<Competence> = new Array<Competence>();
+  //   competenceTemp.push(this.competences.find(m => m.FormateurId == id);
+  //   competenceTemp = [];
+  // };
 }

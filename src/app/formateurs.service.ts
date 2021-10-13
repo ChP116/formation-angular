@@ -40,7 +40,7 @@ export class FormateursService {
 
   update(formateur: Formateur): void {
     const position: number = this.formateurs.findIndex(m => m.Id == formateur.Id);
-
+    console.log(formateur);
     this.formateurs[position] = formateur;
   }
 

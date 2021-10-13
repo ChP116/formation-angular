@@ -19,32 +19,32 @@ export class FormateursComponent implements OnInit {
 
   @Input() formateurForm: Formateur = null;
 
-  selection : number[]=[];
-  bool : boolean;
+  selection: Array<Competence> = [];
+  bool: boolean;
 
   ngOnInit(): void {
   }
 
-  badge(formateurId: number, matiere: Matiere): boolean {
-    // console.log(formateurId+" "+matiere.Id);
-    if (!this.competencesService.competences.find(m => m.Matiere == matiere && m.FormateurId == formateurId)) {
-      // console.log(this.competencesService.competences.find(m => m.Matiere == matiere && m.FormateurId == formateurId))    
-      
-      return false;
-    }
-    else {
-    this.ajoutSelection(matiere.Id)
- 
+  // badge(formateurId: number, matiere: Matiere): boolean {
+  //   console.log("formateur:" + formateurId + " - matiere:" + matiere.Id);
+  //   if (!this.competencesService.competences.find(m => m.Matiere == matiere && m.FormateurId == formateurId)) {
+  //     // console.log(this.competencesService.competences.find(m => m.Matiere == matiere && m.FormateurId == formateurId))    
 
-    return true;
-    }
-  }
+  //     return false;
+  //   }
+  //   else {
+  //     //this.ajoutSelection(formateurId, matiere.Id)
+  //     return true;
+  //   }
+  // }
 
-  ajoutSelection(id:number){
-this.selection.push(id);
-// console.log(this.selection)
+  // ajoutSelection(formateurId: number, matiere: Matiere) {
+  //   let competence: Competence = new Competence(null, formateurId, matiere.Id);
+  //   competence.Matiere = matiere;
+  //   this.selection.push(competence);
+  //   //console.log(this.selection)
 
-  }
+  // }
 
   list(): Array<Formateur> {
     return this.formateursService.findAll();
@@ -72,11 +72,27 @@ this.selection.push(id);
 
   save(): void {
     if (this.formateurForm.Id) {
+
       this.formateursService.update(this.formateurForm);
+      //this.competencesService.deleteByF(this.formateurForm.Id);
+      this.selection.forEach(element => {
+
+        this.competencesService.create(element);
+      });
+
     } else {
       this.formateursService.create(this.formateurForm);
     }
     this.cancel();
+  }
+
+  test(formateurId: number, event: any) {
+    this.selection = [];
+    for (let option of event.target.selectedOptions) {
+      let competence: Competence = new Competence(null, formateurId, option.value);
+      competence.Matiere = this.matieresService.find(option.value);
+      this.selection.push(competence);
+    }
   }
 
   cancel(): void {
