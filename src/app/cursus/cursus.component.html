@@ -17,15 +17,15 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let cursus of list()">
-                        <td>{{cursus.Id}}</td>
-                        <td>{{cursus.Intitule}}</td>
-                        <td>{{cursus.DateDebut | date: "dd/MM/yyyy"}}</td>
-                        <td>{{cursus.DateFin | date: "dd/MM/yyyy"}}</td>
-                        <td ><ul style="list-style:none;padding-left: 0; max-height :75px; overflow: auto"><li  *ngFor="let sta of cursus.Stagiaires">{{sta.Prenom}} {{sta.Nom}}</li></ul></td>
+                        <td>{{cursus.id}}</td>
+                        <td>{{cursus.intitule}}</td>
+                        <td>{{cursus.dateDebut | date: "dd/MM/yyyy"}}</td>
+                        <td>{{cursus.dateFin | date: "dd/MM/yyyy"}}</td>
+                        <td ><ul style="list-style:none;padding-left: 0; max-height :75px; overflow: auto"><li  *ngFor="let sta of cursus.stagiaires">{{sta.prenom}} {{sta.nom}}</li></ul></td>
                         <td>
                             <div class="btn-group btn-group-sm"><button type="button" class="btn btn-primary"
-                                    (click)="edit(cursus.Id)"><i class="fa fa-edit"></i></button><button type="button"
-                                    class="btn btn-danger" (click)="remove(cursus.Id)"><i
+                                    (click)="edit(cursus.id)"><i class="fa fa-edit"></i></button><button type="button"
+                                    class="btn btn-danger" (click)="remove(cursus.id)"><i
                                         class="fa fa-trash"></i></button></div>
                         </td>
                     </tr>
@@ -49,25 +49,25 @@
     <div class="card-body">
         
             <div class="form-group row">
-                <label for="Id" class="col-md-2 col-form-label">Identifiant:</label>
-                <input type="number" class="col-md-10 form-control" id="Id" readonly [(ngModel)]="cursusForm.Id">
+                <label for="id" class="col-md-2 col-form-label">Identifiant:</label>
+                <input type="number" class="col-md-10 form-control" id="id" readonly [(ngModel)]="cursusForm.id">
             </div>
             <div class="form-group row">
-                <label for="Intitule" class="col-md-2 col-form-label">Intitulé:</label>
-                <input type="text" class="col-md-10 form-control" id="Intitule" [(ngModel)]="cursusForm.Intitule">
+                <label for="intitule" class="col-md-2 col-form-label">Intitulé:</label>
+                <input type="text" class="col-md-10 form-control" id="intitule" [(ngModel)]="cursusForm.intitule">
             </div>
             <div class="form-group row">
-                <label for="DateDebut" class="col-md-2 col-form-label">Date de début :</label>
-                <input type="text" class="col-md-10 form-control" id="DateDebut" [(ngModel)]="cursusForm.DateDebut">
+                <label for="dateDebut" class="col-md-2 col-form-label">Date de début :</label>
+                <input type="text" class="col-md-10 form-control" id="dateDebut" [(ngModel)]="cursusForm.dateDebut">
             </div>
             <div class="form-group row">
-                <label for="DateFin" class="col-md-2 col-form-label">Date de fin :</label>
-                <input type="text" class="col-md-10 form-control" id="DateFin" [(ngModel)]="cursusForm.DateFin">
+                <label for="dateFin" class="col-md-2 col-form-label">Date de fin :</label>
+                <input type="text" class="col-md-10 form-control" id="dateFin" [(ngModel)]="cursusForm.dateFin">
             </div>
             <div class="form-group row">
-                <label for="Stagiaires" class="col-md-2 col-form-label">Liste des stagiaires :</label>
-                <select type="text" class="col-md-10 form-control" id="Stagiaires" multiple [(ngModel)]="cursusForm.Stagiaires">
-                    <option *ngFor="let stag of listStagiaires()" [ngValue]="stag">{{stag.Nom}}</option>
+                <label for="stagiaires" class="col-md-2 col-form-label">Liste des stagiaires :</label>
+                <select type="text" class="col-md-10 form-control" [compareWith]="compareStagiaire" id="stagiaires" multiple [(ngModel)]="cursusForm.stagiaires">
+                    <option *ngFor="let stag of listStagiaires()" [ngValue]="stag">{{stag.nom}}</option>
                 </select>
             </div>
             <!-- [selected]="aff(stag.Id)" -->

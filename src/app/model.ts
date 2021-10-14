@@ -17,21 +17,21 @@ export class Matiere {
 }
 
 export class Personne {
-    public Id: number;
+    public id: number;
     public PersonneType: string;
     public Civilite: string;
-    public Nom: string;
-    public Prenom: string;
+    public nom: string;
+    public prenom: string;
     public Email: string;
     public Telephone: string;
     //public AdresseId: number;
     //public Adresse: Adresse;
 
     constructor(id?: number, civilite?: string, nom?: string, prenom?: string, email?: string, telephone?: string) {
-        this.Id = id;
+        this.id = id;
         this.Civilite = civilite;
-        this.Nom = nom;
-        this.Prenom = prenom;
+        this.nom = nom;
+        this.prenom = prenom;
         this.Email = email
         this.Telephone = telephone;
 
@@ -102,20 +102,20 @@ export class Module {
 }
 
 export class Cursus {
-    public Id: number;
-    public GestionnaireId: number;
-    public Utilisateur: Utilisateur;
-    public Intitule: string;
-    public DateDebut: string;
-    public DateFin: string;
-    public Stagiaires: Array<Stagiaire> = new Array<Stagiaire>();
+    public id: number;
+    public gestionnaireId: number;
+    public utilisateur: Utilisateur;
+    public intitule: string;
+    public dateDebut: string;
+    public dateFin: string;
+    public stagiaires: Array<Stagiaire> = new Array<Stagiaire>();
     //public Modules: Array<Module>;
 
     constructor(id?: number, intitule?: string, dateDebut?: string, dateFin?: string) {
-        this.Id = id;
-        this.Intitule = intitule;
-        this.DateDebut = dateDebut;
-        this.DateFin = dateFin;
+        this.id = id;
+        this.intitule = intitule;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
     }
 }
 

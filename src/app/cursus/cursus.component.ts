@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CursusService } from '../cursus.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// import { threadId } from 'worker_threads';
+import { CursusService } from '../cursus/cursus.service';
 import { Cursus, Stagiaire } from '../model';
-import { StagiairesService } from '../stagiaires.service';
+import { StagiairesHttpService } from '../stagiaires/stagiaires-http.service';
+import { CursusHttpService } from './cursus-http.service';
 
 @Component({
   selector: 'cursus',
@@ -10,12 +12,17 @@ import { StagiairesService } from '../stagiaires.service';
 })
 export class CursusComponent implements OnInit {
 
+  @Input()
   public cursusForm: Cursus = null;
+  @Output() cancelRequest = new EventEmitter<void>();
+  @Output() deleteRequest = new EventEmitter<void>();
 
   // public stagiaires: Array<Stagiaire>;
 
 
-  constructor(private cursusService: CursusService, private stagiairesService: StagiairesService) { }
+  constructor(private cursusService: CursusHttpService, private stagiairesService: StagiairesHttpService) { 
+
+  }
 
   ngOnInit(): void {
   }
@@ -30,37 +37,61 @@ export class CursusComponent implements OnInit {
 
   add(): void {
     this.cursusForm = new Cursus();
-    this.cursusForm.Stagiaires = [];
+    this.cursusForm.stagiaires = [];
   }
 
   edit(id: number): void {
-    this.cursusForm = { ... this.cursusService.find(id) };
+    this.cursusService.find(id).subscribe(response => {
+      this.cursusForm = response;
+    }, error => console.log(error));
+    // this.stagiairesService.findByC(id).subscribe(response =>{
+    this.stagiairesService.findByC(id).forEach(element => {
+      this.cursusForm.stagiaires.push(element)
+    });
+    // console.log(this.cursusForm);
+    // console.log(this.stagiairesService.findAll());    
+    // )
   }
 
-  remove(id: number): void {
+  compareStagiaire(stag1: Stagiaire, stag2: Stagiaire): boolean {
+    return stag1 && stag2 ? stag1.id == stag2.id : false;
+  }
+
+  remove(id:number): void {
+    //this.deleteRequest.emit(this.cursusForm.id);
     this.cursusService.delete(id);
   }
 
   save(): void {
     // console.log(this.cursusForm);
-    if (this.cursusForm.Id) {
+    if (this.cursusForm.id) {
       this.cursusService.update(this.cursusForm);
+      // console.log(this.cursusForm.stagiaires)
+      this.cursusForm.stagiaires.forEach(e => {
+        e.CursusId = this.cursusForm.id;
+        this.stagiairesService.update(e)
+      })
+
     } else {
       this.cursusService.create(this.cursusForm);
+      this.cursusForm.stagiaires.forEach(e => {
+        this.stagiairesService.update(e)
+      })
     }
-    this.cancel();
+    this.cancel()
   }
 
   cancel(): void {
+    this.cancelRequest.emit();
     this.cursusForm = null;
   }
 
-  aff(id: number): boolean {
-    if (this.cursusForm.Stagiaires.find(m => m.Id == id)) {
-      return true;
-    }
-    else
-      return false;
-  }
+  // aff(id: number): boolean {
+  //   if (this.cursusForm.stagiaires.find(m => m.id == id)) {
+  //     return true;
+  //   }
+  //   else
+  //     return false;
+  // }
 
 }

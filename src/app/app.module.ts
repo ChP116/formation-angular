@@ -12,8 +12,9 @@ import { CursusComponent } from './cursus/cursus.component';
 import { FormateursComponent } from './formateurs/formateurs.component';
 import { FormateursService } from './formateurs.service';
 import { CompetencesService } from './competences.service';
-import { CursusService } from './cursus.service';
-import { StagiairesService } from './stagiaires.service';
+import { CursusService } from './cursus/cursus.service';
+import { StagiairesService } from './stagiaires/stagiaires.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { StagiairesService } from './stagiaires.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [MatiereService, FormateursService, CompetencesService, CursusService, StagiairesService],
   bootstrap: [AppComponent]
