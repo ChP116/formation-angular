@@ -14,8 +14,8 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let formateur of list()">
-                        <td>{{formateur.Id}}</td>
-                        <div *ngIf="formateur.Externe == true; else elseBlock">
+                        <td>{{formateur.id}}</td>
+                        <div *ngIf="formateur.externe == true; else elseBlock">
                             <td><input type="checkbox" name="externe" checked> </td>
                         </div>
                         <ng-template #elseBlock>
@@ -24,13 +24,13 @@
 
                         <td>
                             <span
-                                *ngFor="let competence of listCompetence(formateur.Id)">{{competence.Matiere?.Titre}}<br></span>
+                                *ngFor="let competence of listCompetence(formateur.id)">{{competence.matiere?.titre}}<br></span>
                         </td>
-
+                        <!-- {{competence.matiere?.titre}} -->
                         <td>
                             <div class="btn-group btn-group-sm"><button type="button" class="btn btn-primary"
-                                    (click)="edit(formateur.Id)"><i class="fa fa-edit"></i></button><button
-                                    type="button" class="btn btn-danger" (click)="remove(formateur.Id)"><i
+                                    (click)="edit(formateur.id)"><i class="fa fa-edit"></i></button><button
+                                    type="button" class="btn btn-danger" (click)="remove(formateur.id)"><i
                                         class="fa fa-trash"></i></button></div>
                         </td>
                     </tr>
@@ -53,13 +53,13 @@
     </div>
     <div class="card-body">
         <div class="form-group row">
-            <label for="Id" class="col-md-2 col-form-label">Identifiant:</label>
-            <input type="number" class="col-md-10 form-control" id="Id" readonly [(ngModel)]="formateurForm.Id">
+            <label for="id" class="col-md-2 col-form-label">Identifiant:</label>
+            <input type="number" class="col-md-10 form-control" id="id" readonly [(ngModel)]="formateurForm.id">
         </div>
         <div class="form-group row">
-            <label for="Externe" class="col-md-2 col-form-label">Externe :</label>
+            <label for="externe" class="col-md-2 col-form-label">Externe :</label>
             <div class=" col-md-10">
-                <input type="checkbox" class="col-md-1 ml-0 mt-3" id="Externe" [(ngModel)]="formateurForm.Externe">
+                <input type="checkbox" class="col-md-1 ml-0 mt-3" id="externe" [(ngModel)]="formateurForm.externe">
             </div>
         </div>
         <!--<div>
@@ -68,15 +68,15 @@
                 *ngFor="let matiere of listMatiere()"
                 (click)="ajoutSelection(formateurForm.Id,matiere)">{{matiere.Titre}}</button>
         </div>-->
-        <div class="form-group row">
+        <!-- <div class="form-group row">
             <label for="matiere" class="col-md-2 col-form-label">Liste des matieres :</label>
             <select type="text" class="col-md-10 form-control" id="matiere" multiple
-                (change)="selectChange(formateurForm.Id, $event)">
-                <option *ngFor="let mat of listMatiere()" [selected]="select(formateurForm.Id, mat)" [value]="mat.Id">
-                    {{mat.Titre}}</option>
+                (change)="selectChange(formateurForm.id, $event)">
+                <option *ngFor="let mat of listMatiere()" [selected]="select(formateurForm.id, mat)" [value]="mat.id">
+                    {{mat.titre}}</option>
             </select>
 
-        </div>
+        </div> -->
 
         <!-- version checkbox  -->
         <div class="form-group row">
@@ -84,8 +84,8 @@
             <div class=" col-md-10">
                 <div *ngFor="let mat of listMatiere()">
                     <input class="col-md-1 ml-0 mt-2 pr-5" (change)="checkboxChangeBis($event)"
-                        type="checkbox" [checked]="selectCheck(mat)" [value]="mat.Id" [id]="mat.Titre" />
-                    <label [for]="mat.Titre" class="col-md-11 col-form-label">{{mat.Titre}}</label>
+                        type="checkbox" [checked]="selectCheck(mat)" [value]="mat.id" [id]="mat.titre" />
+                    <label [for]="mat.titre" class="col-md-11 col-form-label">{{mat.titre}}</label>
                 </div>
             </div>
         </div>
@@ -93,11 +93,11 @@
     </div>
     <div class="card-footer">
         <div class="btn-group btn-group-lg float-right">
-            <button type="button" class="btn btn-success" (click)="save()">
+            <!-- <button type="button" class="btn btn-success" (click)="save()">
                 <i class="fa fa-check"></i>
-            </button>
-            <!-- bouton save checkbox -->
-            <button type="button" class="btn btn-primary" (click)="saveCBis()">
+            </button> -->
+            <!-- bouton save checkbox  saveCBis()-->
+            <button type="button" class="btn btn-primary" (click)="save()">
                 <i class="fa fa-check"></i>
             </button>
             <!-- fin bouton save checkbox -->

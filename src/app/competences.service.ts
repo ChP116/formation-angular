@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormateursService } from './formateurs.service';
+import { FormateursService } from './formateurs/formateurs.service';
 import { MatiereService } from './matieres/matiere.service';
 import { Competence } from './model';
 
@@ -14,13 +14,13 @@ export class CompetencesService {
   constructor(private matieresService: MatiereService, private formateursService: FormateursService) {
 
     let competence1: Competence = new Competence(1, 1, 1);
-    competence1.Matiere = (matieresService.find(1));
+    competence1.matiere = (matieresService.find(1));
     this.competences.push(competence1);
     let competence2: Competence = new Competence(2, 1, 3);
-    competence2.Matiere = (matieresService.find(3));
+    competence2.matiere = (matieresService.find(3));
     this.competences.push(competence2);
     let competence3: Competence = new Competence(3, 2, 6);
-    competence3.Matiere = (matieresService.find(6));
+    competence3.matiere = (matieresService.find(6));
     this.competences.push(competence3);
     
   }
@@ -28,7 +28,7 @@ export class CompetencesService {
   findAll(id: number): Array<Competence> {
     let competenceTemp: Array<Competence> = new Array<Competence>();
     this.competences.forEach(element => {
-      if (element.FormateurId == id) {
+      if (element.formateurId == id) {
         competenceTemp.push(element);
       }
     });
@@ -37,7 +37,7 @@ export class CompetencesService {
   }
 
   deleteByF(id: number): void {   
-    this.competences.filter(m=> m.FormateurId==id).forEach(element => {                 
+    this.competences.filter(m=> m.formateurId==id).forEach(element => {                 
         this.competences.splice(this.competences.indexOf(element), 1);        
       })
   };
@@ -56,7 +56,7 @@ export class CompetencesService {
     }
 
     competence.Id = ++max;
-    competence.Matiere = (this.matieresService.find(competence.MatiereId));
+    competence.matiere = (this.matieresService.find(competence.matiereId));
     this.competences.push(competence);
   }
 

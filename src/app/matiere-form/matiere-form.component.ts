@@ -19,7 +19,7 @@ export class MatiereFormComponent implements OnInit {
   }
 
   save(): void {
-    if (this.matiereForm.Id) {
+    if (this.matiereForm.id) {
       this.matiereService.update(this.matiereForm);
     } else {
       this.matiereService.create(this.matiereForm);

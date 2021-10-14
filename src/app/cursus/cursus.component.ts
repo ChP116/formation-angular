@@ -82,7 +82,7 @@ export class CursusComponent implements OnInit {
   }
 
   cancel(): void {
-    this.cancelRequest.emit();
+    // this.cancelRequest.emit();
     this.cursusForm = null;
   }
 

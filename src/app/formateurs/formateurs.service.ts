@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Formateur, Matiere } from './model';
+import { Formateur, Matiere } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,31 +21,31 @@ export class FormateursService {
   }
 
   find(id: number): Formateur {
-    return this.formateurs.find(m => m.Id == id);
+    return this.formateurs.find(m => m.id == id);
   }
 
   create(formateur: Formateur): void {
     let max: number = 0;
 
     for (let mat of this.formateurs) {
-      if (max < mat.Id) {
-        max = mat.Id;
+      if (max < mat.id) {
+        max = mat.id;
       }
     }
 
-    formateur.Id = ++max;
+    formateur.id = ++max;
 
     this.formateurs.push(formateur);
   }
 
   update(formateur: Formateur): void {
-    const position: number = this.formateurs.findIndex(m => m.Id == formateur.Id);
+    const position: number = this.formateurs.findIndex(m => m.id == formateur.id);
     // console.log(formateur);
     this.formateurs[position] = formateur;
   }
 
   delete(id: number): void {
-    const position: number = this.formateurs.findIndex(m => m.Id == id);
+    const position: number = this.formateurs.findIndex(m => m.id == id);
 
     this.formateurs.splice(position, 1);
   }

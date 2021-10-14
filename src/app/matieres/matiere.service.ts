@@ -17,31 +17,31 @@ export class MatiereService {
   }
 
   find(id: number): Matiere {
-    return this.matieres.find(m => m.Id == id);
+    return this.matieres.find(m => m.id == id);
   }
 
   create(matiere: Matiere) : void {
     let max: number = 0;
 
     for(let mat of this.matieres) {
-      if(max < mat.Id) {
-        max = mat.Id;
+      if(max < mat.id) {
+        max = mat.id;
       }
     }
 
-    matiere.Id = ++max;
+    matiere.id = ++max;
 
     this.matieres.push(matiere);
   }
 
   update(matiere: Matiere) : void {
-    const position: number = this.matieres.findIndex(m => m.Id == matiere.Id);
+    const position: number = this.matieres.findIndex(m => m.id == matiere.id);
 
     this.matieres[position] = matiere;
   }
 
   delete(id: number): void {
-    const position: number = this.matieres.findIndex(m => m.Id == id);
+    const position: number = this.matieres.findIndex(m => m.id == id);
 
     this.matieres.splice(position, 1);
   }

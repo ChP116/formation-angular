@@ -10,7 +10,7 @@ import { MatiereFormComponent } from './matiere-form/matiere-form.component';
 import { StagiairesComponent } from './stagiaires/stagiaires.component';
 import { CursusComponent } from './cursus/cursus.component';
 import { FormateursComponent } from './formateurs/formateurs.component';
-import { FormateursService } from './formateurs.service';
+import { FormateursService } from './formateurs/formateurs.service';
 import { CompetencesService } from './competences.service';
 import { CursusService } from './cursus/cursus.service';
 import { StagiairesService } from './stagiaires/stagiaires.service';

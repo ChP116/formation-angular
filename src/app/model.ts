@@ -1,14 +1,14 @@
 export class Matiere {
-    public Id: number;
-    public Titre: string;
+    public id: number;
+    public titre: string;
     public Duree: number;
     public Objectifs: string;
     public PreRequis: string;
     public Programme: string;
 
     constructor(id?: number, titre?: string, duree?: number, objectifs?: string, preRequis?: string, programme?: string) {
-        this.Id = id;
-        this.Titre = titre;
+        this.id = id;
+        this.titre = titre;
         this.Duree = duree;
         this.Objectifs = objectifs;
         this.PreRequis = preRequis;
@@ -65,16 +65,16 @@ export class Utilisateur extends Personne {
 }
 
 export class Formateur {
-    public Id: number;
-    public Externe: boolean;
+    public id: number;
+    public externe: boolean;
     //public Modules: Array<Module>;
-    public Competences: Array<Competence>;
+    public competences: Array<Competence>;
     public UtilisateurId: number;
     public Utilisateur: Utilisateur;
 
     constructor(id?: number, externe?: boolean) {
-        this.Id = id;
-        this.Externe = externe;
+        this.id = id;
+        this.externe = externe;
     }
 }
 
@@ -152,14 +152,14 @@ export class Evaluation {
 
 export class Competence {
     public Id: number;
-    public FormateurId: number;
-    public Formateur: Formateur;
-    public MatiereId: number;
-    public Matiere: Matiere;
+    public formateurId: number;
+    public formateur: Formateur;
+    public matiereId: number;
+    public matiere: Matiere;
 
     constructor(id?: number, formateurId?: number, matiereId?: number) {
         this.Id = id;
-        this.FormateurId = formateurId;
-        this.MatiereId = matiereId;
+        this.formateurId = formateurId;
+        this.matiereId = matiereId;
     }
 }
