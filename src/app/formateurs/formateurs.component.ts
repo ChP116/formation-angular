@@ -73,6 +73,7 @@ export class FormateursComponent implements OnInit {
 
   edit(id: number): void {
     this.formateurForm = { ... this.formateursService.find(id) };
+    this.formateurForm.Competences = this.competencesService.findAll(id);
   }
 
   remove(id: number): void {
@@ -134,11 +135,41 @@ export class FormateursComponent implements OnInit {
     }
   }
 
+  selectCheck(matiere: Matiere): boolean {
+    if (this.formateurForm.Competences.find(c => c.MatiereId == matiere.Id)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   //// fin version select
 
 
 
   // Version checkbox : bug si check/uncheck intempestifs, ok en utilisation normale
+  saveCBis(): void {
+    if (this.formateurForm.Id) {
+      this.competencesService.deleteByF(this.formateurForm.Id);
+      this.formateurForm.Competences.forEach(c => {
+        this.competencesService.competences.push(c);
+      })
+    }
+    else {
+      this.formateursService.create(this.formateurForm);
+
+      this.selectionC.forEach(element => {
+        element.FormateurId = this.formateurForm.Id;
+        this.competencesService.create(element);
+      });
+
+    }
+    this.cancel();
+
+  }
+
+
   saveC(): void {
     // this.status.splice(0, 1)
     // console.log(this.status)
@@ -206,12 +237,12 @@ export class FormateursComponent implements OnInit {
                 this.check = true
               }
             })
-            
+
             if (this.check) {
               if (this.competencesService.competences.find(m => m.Matiere == element_D.Matiere && m.FormateurId == element_D.FormateurId)) {
                 element_D.Id = this.competencesService.competences.find(m => m.Matiere == element_D.Matiere && m.FormateurId == element_D.FormateurId).Id
                 this.competencesService.delete(element_D.Id);
-              }              
+              }
             }
           }
           else {
@@ -233,6 +264,26 @@ export class FormateursComponent implements OnInit {
     }
     this.cancel();
 
+  }
+
+  checkboxChangeBis(event: any) {
+    let id: number = parseInt(event.target.value);
+
+    if (event.currentTarget.checked) {
+      let competence: Competence = new Competence(null, this.formateurForm.Id, id);
+      competence.Matiere = this.matieresService.find(event.target.value);
+      this.formateurForm.Competences.push(competence);
+    } else {
+      let position;
+      this.formateurForm.Competences.forEach((c, i) => {
+        if (c.MatiereId == id) {
+          position = i;
+        }
+      });
+      this.formateurForm.Competences.splice(position, 1);
+    }
+
+    console.log(this.formateurForm);
   }
 
   checkboxChange(formateurId: number, event: any) {
